@@ -12,14 +12,15 @@ public class PlayerController : MonoBehaviour
     private Collider2D coll;
     private LayerMask ground;
     
-    public int coin;
+    private int coin;
     [SerializeField] private Text coincounter;
     
-    private enum State {idle, run, jump, fall, doublejump, push, sword, attack, hit, defeat}
+    private enum State {idle, run, jump, fall, hit, doublejump, push, sword, attack, defeat}
     private State state = State.idle;
     
-    private float speed = 7;
-    private float jumpforce = 7;
+    private float speed = 5;
+    private float jumpforce = 10;
+    private float hurtforce = 8;
     
     void Start()
     {
@@ -30,29 +31,30 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        movement();
+        if (state != State.hit )
+        {
+            movement();
+
+        }
+
         statemachine();
         anim.SetInteger("State", (int)state);
     }
 
     private void movement()
     {
-        // left
         if (Input.GetAxis("Horizontal") < 0)
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);            
         }
         
-        // right
-
         else if (Input.GetAxis("Horizontal") > 0)
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);            
         }
         
-        // jump
         if (Input.GetButtonDown("Jump") && coll.IsTouchingLayers())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpforce);
@@ -78,11 +80,19 @@ public class PlayerController : MonoBehaviour
                 state = State.idle;
             }
         }
-        
+
+        else if (state == State.hit)
+        {
+            if (Mathf.Abs(rb.velocity.x) < .1f)
+            {
+                state = State.idle;
+            }
+        }
         else if (Mathf.Abs(rb.velocity.x) > 2f)
         {
             state = State.run;
         }
+        
 
         else
         {
@@ -97,6 +107,31 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             coin += 1;
             coincounter.text = coin.ToString();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            if(state == State.fall)
+            {
+                Destroy(other.gameObject);
+            }
+
+            else
+            {
+                state = State.hit;
+                if (other.gameObject.transform.position.x > transform.position.x)
+                {
+                    rb.velocity = new Vector2(-hurtforce, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(hurtforce, rb.velocity.y);
+
+                }
+            }        
         }
     }
 }
