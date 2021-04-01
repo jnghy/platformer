@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
@@ -115,8 +116,8 @@ public class PlayerController : MonoBehaviour
         {
             if(state == State.fall)
             {
+                Destroy(other.gameObject, .20f);
                 Jump();
-                Destroy(other.gameObject, .25f);
             }
 
             else
