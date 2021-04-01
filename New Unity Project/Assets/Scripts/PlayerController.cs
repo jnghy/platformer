@@ -22,12 +22,12 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         coll = GetComponent<Collider2D>();
         ground = LayerMask.GetMask("ground");
-
     }
     void Update()
     {
         movement();
         statemachine();
+        anim.SetInteger("State", (int)state);
     }
 
     private void movement()
@@ -43,8 +43,8 @@ public class PlayerController : MonoBehaviour
 
         else if (Input.GetAxis("Horizontal") > 0)
         {
-            rb.velocity = new Vector2(-speed, rb.velocity.y);
-            transform.localScale = new Vector2(-1, 1);            
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+            transform.localScale = new Vector2(1, 1);            
         }
         
         // jump
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         if (state == State.jump)
         {
-            if (rb.velocity.y = .1f)
+            if (rb.velocity.y < .1f)
             {
                 state = State.fall;
             }
@@ -68,13 +68,13 @@ public class PlayerController : MonoBehaviour
         
         else if (state == State.fall)
         {
-            if (coll.IsTouchingLayers("ground"))
+            if (coll.IsTouchingLayers())
             {
                 state = State.idle;
             }
         }
         
-        else if (Mathf.Abs(rb.velocity) > 3f)
+        else if (Mathf.Abs(rb.velocity.x) > 2f)
         {
             state = State.run;
         }
