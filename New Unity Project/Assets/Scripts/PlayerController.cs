@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
     private enum State {idle, run, jump, fall, hit, doublejump, push, sword, attack, defeat}
     private State state = State.idle;
     
-    private float speed = 5;
+    private float speed = 8;
     private float jumpforce = 10;
-    private float hurtforce = 5;
+    private float hurtforce = 6;
     
     void Start()
     {
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
         
         else if (state == State.fall)
         {
-            if (coll.IsTouchingLayers())
+            if (coll.IsTouchingLayers(ground))
             {
                 state = State.idle;
             }
@@ -116,7 +116,6 @@ public class PlayerController : MonoBehaviour
         {
             if(state == State.fall)
             {
-                Destroy(other.gameObject, .20f);
                 Jump();
             }
 

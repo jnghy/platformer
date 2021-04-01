@@ -13,14 +13,11 @@ public class SlimeController : EnemyController
     private LayerMask ground;
     private bool facingleft;
     private Collider2D coll;
-    private Rigidbody2D rb;
-
     protected override void Start()
     {
         base.Start();
         ground = LayerMask.GetMask("ground");
         coll = GetComponent<Collider2D>();
-        rb = GetComponent<Rigidbody2D>();
         facingleft = true;
     }
 
