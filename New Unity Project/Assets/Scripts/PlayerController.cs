@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,9 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private Collider2D coll;
     private LayerMask ground;
+    
     public int coin;
+    [SerializeField] private Text coincounter;
     
     private enum State {idle, run, jump, fall, doublejump, push, sword, attack, hit, defeat}
     private State state = State.idle;
@@ -93,6 +96,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             coin += 1;
+            coincounter.text = coin.ToString();
         }
     }
 }
