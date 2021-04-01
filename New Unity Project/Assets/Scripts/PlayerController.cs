@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     
     private float speed = 5;
     private float jumpforce = 10;
-    private float hurtforce = 8;
+    private float hurtforce = 5;
     
     void Start()
     {
@@ -57,8 +57,7 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetButtonDown("Jump") && coll.IsTouchingLayers())
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpforce);
-            state = State.jump;
+            Jump();
         }
         
     }
@@ -116,7 +115,8 @@ public class PlayerController : MonoBehaviour
         {
             if(state == State.fall)
             {
-                Destroy(other.gameObject);
+                Jump();
+                Destroy(other.gameObject, .25f);
             }
 
             else
@@ -133,5 +133,11 @@ public class PlayerController : MonoBehaviour
                 }
             }        
         }
+    }
+
+    private void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpforce);
+        state = State.jump;
     }
 }
