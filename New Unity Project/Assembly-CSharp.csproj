@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CamareController.cs" />
+     <Compile Include="Assets\CoinController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/keikayoung/Documents/GitHub/platformer/New Unity Project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

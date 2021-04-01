@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private Collider2D coll;
     private LayerMask ground;
+    private Animator canim;
 
     private enum State {idle, run, jump, fall, doublejump, push, sword, attack, hit, defeat}
     private State state = State.idle;
@@ -82,6 +84,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             state = State.idle;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Collectables")
+        {
+            Destroy(collision.gameObject,.25f);
         }
     }
 }
