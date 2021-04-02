@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Fall.cs" />
+     <Compile Include="Assets\SceneChanger.cs" />
      <Compile Include="Assets\Scripts\CamareController.cs" />
      <Compile Include="Assets\Scripts\EnemyController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
