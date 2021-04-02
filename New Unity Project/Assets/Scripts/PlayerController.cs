@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector2(1, 1);            
         }
         
-        if (Input.GetButtonDown("Jump") && coll.IsTouchingLayers())
+        if (Input.GetButtonDown("Jump") && coll.IsTouchingLayers(ground))
         {
             Jump();
         }
