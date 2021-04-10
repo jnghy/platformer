@@ -70,5 +70,19 @@ public class SlimeController : EnemyController
             }
         }
     }
-    
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (facingleft)
+            {
+                facingleft = false;
+            }
+            else
+            {
+                facingleft = true;
+            }
+        }
+    }
 }

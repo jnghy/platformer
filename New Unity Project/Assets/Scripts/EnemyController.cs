@@ -33,6 +33,7 @@ public class EnemyController : MonoBehaviour
                 anim.SetBool("Death",true);
                 Destroy(this.gameObject, time);
             }
+            
         }
     }
         

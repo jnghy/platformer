@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Fall.cs" />
+     <Compile Include="Assets\GoblinController.cs" />
      <Compile Include="Assets\SceneChanger.cs" />
      <Compile Include="Assets\Scripts\CamareController.cs" />
      <Compile Include="Assets\Scripts\EnemyController.cs" />
@@ -66,6 +67,9 @@
      <Compile Include="Assets\Scripts\SlimeController.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/keikayoung/Documents/GitHub/platformer/New Unity Project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Cinemachine">
+ <HintPath>/Users/keikayoung/Documents/GitHub/platformer/New Unity Project/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Animation.Runtime">
  <HintPath>/Users/keikayoung/Documents/GitHub/platformer/New Unity Project/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
@@ -130,6 +134,9 @@
  <Reference Include="Unity.2D.Animation.Editor">
  <HintPath>/Users/keikayoung/Documents/GitHub/platformer/New Unity Project/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="com.unity.cinemachine.editor">
+ <HintPath>/Users/keikayoung/Documents/GitHub/platformer/New Unity Project/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Mathematics.Editor">
  <HintPath>/Users/keikayoung/Documents/GitHub/platformer/New Unity Project/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
  </Reference>
@@ -144,12 +151,6 @@
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>/Users/keikayoung/Documents/GitHub/platformer/New Unity Project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="Cinemachine">
- <HintPath>/Users/keikayoung/Documents/GitHub/platformer/New Unity Project/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
- </Reference>
- <Reference Include="com.unity.cinemachine.editor">
- <HintPath>/Users/keikayoung/Documents/GitHub/platformer/New Unity Project/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Hub/Editor/2019.4.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -673,9 +674,6 @@
  <Reference Include="mscorlib">
  <HintPath>/Applications/Unity/Hub/Editor/2019.4.19f1/Unity.app/Contents/NetStandard/compat/2.0.0/shims/netfx/mscorlib.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
