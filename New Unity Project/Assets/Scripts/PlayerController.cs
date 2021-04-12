@@ -5,6 +5,7 @@ using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,12 +24,18 @@ public class PlayerController : MonoBehaviour
     private float jumpforce = 10;
     private float hurtforce = 6;
     
+    public int health = 3;
+    [SerializeField] private Text lives;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         coll = GetComponent<Collider2D>();
         ground = LayerMask.GetMask("ground");
+
+
+
     }
     void Update()
     {
@@ -40,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
         statemachine();
         anim.SetInteger("State", (int)state);
+
     }
 
     private void movement()
@@ -87,6 +95,14 @@ public class PlayerController : MonoBehaviour
             {
                 state = State.idle;
             }
+            
+            lives.text = health.ToString();
+            
+            if (health == 0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+
         }
         else if (Mathf.Abs(rb.velocity.x) > 2f)
         {
@@ -121,6 +137,7 @@ public class PlayerController : MonoBehaviour
 
             else
             {
+                health -= 1;
                 state = State.hit;
                 if (other.gameObject.transform.position.x > transform.position.x)
                 {
